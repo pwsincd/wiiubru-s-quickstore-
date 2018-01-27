@@ -1,0 +1,487 @@
+<!-- Wiiubru's quickstore 
+	Cobbled together by pwsincd -->
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="jquery.qtip.min.js"></script>
+		<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Product+Sans">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link type="text/css" rel="stylesheet" href="jquery.qtip.min.css" />
+	</head>
+	<style type="text/css">
+	body {
+		font-family: 'Product Sans', Arial, sans-serif;
+	}
+	/* DOWNLOAD BUTTON STYLING */
+	* {
+		box-sizing: border-box;
+	}
+	.button {
+		display: inline-block;
+		float:left;
+		-webkit-font-smoothing: antialiased;
+		position: relative;
+		padding: .8em 1.4em;
+		padding-right: 4.7em;
+		background: #009ED8;
+		border: none;
+		color: white;
+		transition: .2s;
+	}
+	.button:before,
+	.button:after {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		padding-top: inherit;
+		padding-bottom: inherit;
+		width: 2.8em;
+		content: "\00a0";
+		font-family: 'FontAwesome', sans-serif;
+		font-size: 1.2em;
+		text-align: center;
+		transition: .2s;
+		transform-origin: 50% 60%;
+	}
+	.button:before {
+		background: rgba(0, 0, 0, 0.1);
+	}
+	.button:hover {
+		background: #0079a5;
+	}
+	.button:active,
+	.button:focus {
+		background: #002e3f;
+		outline: none;
+	}
+	.button {
+		min-width: 15em;
+	}
+	.arrow {
+		background: #FE5F55;
+	}
+	.arrow:hover {
+		background: #fe2f22;
+	}
+	.arrow:active,
+	.arrow:focus {
+		background: #b90c01;
+	}
+	.arrow:after {
+		content: "\F054";
+	}
+	.arrow:hover:after {
+		-webkit-animation: bounceright .3s alternate ease infinite;
+		animation: bounceright .3s alternate ease infinite;
+	}
+	@-webkit-keyframes bounceright {
+		from {
+			-webkit-transform: translateX(0);
+		}
+		to {
+			-webkit-transform: translateX(3px);
+		}
+	}
+	@-webkit-keyframes wiggle {
+		from {
+			-webkit-transform: rotate(0deg);
+		}
+		to {
+			-webkit-transform: rotate(30deg);
+		}
+	}
+	@keyframes bounceright {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(3px);
+		}
+	}
+	@keyframes wiggle {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(30deg);
+		}
+	}
+	/*CATEGORY CONTAINERS*/
+	#container5 {
+		z-index: 9;
+		clear:left;
+		float:left;
+		width:100%;
+		overflow:hidden;
+		background: #efefef ; /* Old browsers */
+		background: -moz-linear-gradient(top, #4b4c62 0%, #4b4c62 3%, #efefef 3%, #efefef 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #4b4c62 0%,#4b4c62 3%,#efefef 3%,#efefef 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #4b4c62 0%,#4b4c62 3%,#efefef 3%,#efefef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b4c62', endColorstr='#efefef',GradientType=0 ); /* IE6-9 */
+	}
+	#container4 {
+		clear:left;
+		float:left;
+		width:100%;
+		position:relative;
+		right:20%;
+		background: #ff8463; /* Old browsers */
+		background: -moz-linear-gradient(top, #4b4c62 0%, #4b4c62 3%, #ff8463 3%, #ff8463 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #4b4c62 0%,#4b4c62 3%,#ff8463 3%,#ff8463 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #4b4c62 0%,#4b4c62 3%,#ff8463 3%,#ff8463 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b4c62', endColorstr='#ff8463',GradientType=0 ); /* IE6-9 */
+	}
+	#container3 {
+		clear:left;
+		float:left;
+		width:100%;
+		position:relative;
+		right:20%;
+		background: #62c8fb; /* Old browsers */
+		background: -moz-linear-gradient(top, #4b4c62 0%, #4b4c62 3%, #62c8fb 3%, #62c8fb 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #4b4c62 0%,#4b4c62 3%,#62c8fb 3%,#62c8fb 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #4b4c62 0%,#4b4c62 3%,#62c8fb 3%,#62c8fb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b4c62', endColorstr='#62c8fb',GradientType=0 ); /* IE6-9 */
+	}
+	#container2 {
+		clear:left;
+		float:left;
+		width:100%;
+		position:relative;
+		right:20%;
+		background: #48e8ae; /* Old browsers */
+		background: -moz-linear-gradient(top, #4b4c62 0%, #4b4c62 3%, #48e8ae 3%, #48e8ae 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #4b4c62 0%,#4b4c62 3%,#48e8ae 3%,#48e8ae 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #4b4c62 0%,#4b4c62 3%,#48e8ae 3%,#48e8ae 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b4c62', endColorstr='#48e8ae',GradientType=0 ); /* IE6-9 */
+	}
+	#container1 {
+		float:left;
+		width:100%;
+		position:relative;
+		right:20%;
+		background: #fbbe55; /* Old browsers */
+		background: -moz-linear-gradient(top, #4b4c62 0%, #4b4c62 3%, #fbbe55 3%, #fbbe55 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #4b4c62 0%,#4b4c62 3%,#fbbe55 3%,#fbbe55 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #4b4c62 0%,#4b4c62 3%,#fbbe55 3%,#fbbe55 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4b4c62', endColorstr='#fbbe55',GradientType=0 ); /* IE6-9 */
+	}
+	#col1 {
+		font-size: 70%;
+		float:left;
+		width:16%;
+		position:relative;
+		left:82%;
+		overflow:hidden;
+	}
+	#col2 {
+		font-size: 70%;
+		float:left;
+		width:16%;
+		position:relative;
+		left:86%;
+		overflow:hidden;
+	}
+	#col3 {
+		font-size: 70%;
+		float:left;
+		width:16%;
+		position:relative;
+		left:90%;
+		overflow:hidden;
+	}
+	#col4 {
+		font-size: 70%;
+		float:left;
+		width:16%;
+		position:relative;
+		left:94%;
+		overflow:hidden;
+	}
+	#col5 {
+		font-size: 70%;
+		float:left;
+		width:16%;
+		position:relative;
+		left:98%;
+		overflow:hidden;
+	}
+	#header1 {
+		color : #aef272;
+	}
+	#header2 {
+		color : #aef272;
+	}
+	#header3 {
+		color : #aef272;
+	}
+	#header4 {
+		color : #aef272;
+	}
+	#header5 {
+		color : #aef272;
+	}
+
+
+
+	/* PROSESSING */
+	.processing {
+		font-family: 'Roboto', serif;
+		float:left;
+		padding: .8em 1.2em;
+		border: none;
+		color: white;
+		background: #b90c01;
+		text-align: center;
+		vertical-align: middle;
+		transition: .2s;
+		transform-origin: 50% 60%;
+	}
+	.footer {
+		background:#4b4c62;
+		width: 100%;
+		height: 15px;
+	}
+</style>
+
+<body>
+	<div id="container5">
+		<div id="container4">
+			<div id="container3">
+				<div id="container2">
+					<div id="container1">
+						<div id="col1">
+							<ul id="toollist">
+								<div id="header1">
+									<b>TOOLS</b><br><br>
+								</div>
+							</ul>
+						</div>
+						<div id="col2">
+							<ul id="gamelist">
+								<div id="header2">
+									<b>GAMES</b><br><br>
+								</div>
+							</ul>
+						</div>
+						<div id="col3">
+							<ul id="loaderlist">
+								<div id="header3">
+									<b>LOADERS</b><br><br>
+								</div>
+							</ul>
+						</div>
+						<div id="col4">
+							<ul id="emulist">
+								<div id="header4">
+									<b>EMULATORS</b><br><br>
+								</div>
+							</ul>
+						</div>
+						<div id="col5">
+							<ul id="conceptlist">
+								<div id="header5">
+									<b>CONCEPTS</b><br><br>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button class="button  arrow" id="download">DOWNLOAD SELECTED HOMEBREW</button>
+	<div style="display:none;" class="processing" id="processing">PACKAGING....
+		<i class="fa fa-refresh fa-spin fa-fw"></i>
+	</div>
+	<br>
+	<div class="footer"></div>
+</body>
+
+<script type="text/javascript">
+		// syncronously call the json file (depreciated method ... will do for now :s)
+		$(document).ready(function(){
+			var homebrew = $.parseJSON($.ajax({
+				url:  '../appstore/quickstore.json',
+				dataType: "json", 
+				async: false
+			}).responseText); // This will wait until we get a response from the ajax request.
+
+			// homebrew categories
+			var tools = [];
+			var games = [];
+			var loaders = [];
+			var emus = [];
+			var concepts = [];
+
+			// create arrays of each category of homebrew
+			for (var i = 0; i < homebrew.length ; i++) {
+				if (homebrew[i].cat === "tool") {
+					tools.push(homebrew[i]);
+				}  
+			}
+			for (var i = 0; i < homebrew.length ; i++) {
+				if (homebrew[i].cat === "game") {
+					games.push(homebrew[i]);
+				}  
+			}
+			for (var i = 0; i < homebrew.length ; i++) {
+				if (homebrew[i].cat === "loader") {
+					loaders.push(homebrew[i]);
+				}  
+			}
+			for (var i = 0; i < homebrew.length ; i++) {
+				if (homebrew[i].cat === "emu") {
+					emus.push(homebrew[i]);
+				}  
+			}
+			for (var i = 0; i < homebrew.length ; i++) {
+				if (homebrew[i].cat === "poc") {
+					concepts.push(homebrew[i]);
+				}  
+			}
+
+			// alphabetically sort the lists.
+			tools.sort(function(a, b) {
+				var textA = a.name.toUpperCase();
+				var textB = b.name.toUpperCase();
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			});
+			games.sort(function(a, b) {
+				var textA = a.name.toUpperCase();
+				var textB = b.name.toUpperCase();
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			});
+			loaders.sort(function(a, b) {
+				var textA = a.name.toUpperCase();
+				var textB = b.name.toUpperCase();
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			});
+			emus.sort(function(a, b) {
+				var textA = a.name.toUpperCase();
+				var textB = b.name.toUpperCase();
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			});
+			concepts.sort(function(a, b) {
+				var textA = a.name.toUpperCase();
+				var textB = b.name.toUpperCase();
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			});			
+
+			//publish lists of apps in categories with checkboxes associated
+			var toolslist = document.getElementById("toollist");
+
+			for (var i = 0; i < tools.length; i++) {
+				var checkBox = document.createElement("input");
+				var label = document.createElement("label");
+				checkBox.type = "checkbox";
+				checkBox.value = tools[i].directory;
+				label.title = tools[i].long_desc;
+				if (tools[i].directory === "appstore") {
+					checkBox.checked = true;
+				}   
+				toolslist.appendChild(checkBox);
+				toolslist.appendChild(label);
+				label.appendChild(document.createTextNode(tools[i].name+" "+tools[i].version));
+				label.appendChild(document.createElement("br"));
+			}
+			var gameslist = document.getElementById("gamelist");
+
+			for (var i = 0; i < games.length; i++) {
+				var checkBox = document.createElement("input");
+				var label = document.createElement("label");
+				checkBox.type = "checkbox";
+				checkBox.value = games[i].directory;
+				label.title = games[i].long_desc;
+				gameslist.appendChild(checkBox);
+				gameslist.appendChild(label);
+				label.appendChild(document.createTextNode(games[i].name+" "+games[i].version));
+				label.appendChild(document.createElement("br"));
+			}
+			var loaderslist = document.getElementById("loaderlist");
+
+			for (var i = 0; i < loaders.length; i++) {
+				var checkBox = document.createElement("input");
+				var label = document.createElement("label");
+				checkBox.type = "checkbox";
+				checkBox.value = loaders[i].directory;
+				label.title = loaders[i].long_desc;
+				if (loaders[i].directory === "homebrew_launcher") {
+					checkBox.checked = true;
+				} 
+				loaderslist.appendChild(checkBox);
+				loaderslist.appendChild(label);
+				label.appendChild(document.createTextNode(loaders[i].name+" "+loaders[i].version));
+				label.appendChild(document.createElement("br"));
+			}
+			var emuslist = document.getElementById("emulist");
+
+			for (var i = 0; i < emus.length; i++) {
+				var checkBox = document.createElement("input");
+				var label = document.createElement("label");
+				checkBox.type = "checkbox";
+				checkBox.value = emus[i].directory;
+				label.title = emus[i].long_desc;
+				emuslist.appendChild(checkBox);
+				emuslist.appendChild(label);
+				label.appendChild(document.createTextNode(emus[i].name+" "+emus[i].version));
+				label.appendChild(document.createElement("br"));
+			}
+			var conceptslist = document.getElementById("conceptlist");
+
+			for (var i = 0; i < concepts.length; i++) {
+				var checkBox = document.createElement("input");
+				var label = document.createElement("label");
+				checkBox.type = "checkbox";
+				checkBox.value = concepts[i].directory;
+				label.title = concepts[i].long_desc;
+				conceptslist.appendChild(checkBox);
+				conceptslist.appendChild(label);
+				label.appendChild(document.createTextNode(concepts[i].name+" "+concepts[i].version));
+				label.appendChild(document.createElement("br"));
+			}
+
+			// send checked homebrew to an array for filtering
+			$("#download").click(function(event){
+				event.preventDefault();
+				var chosenapps = $("input:checkbox:checked").map(function(){
+					return this.value;
+				}).toArray();
+
+				//Populate a final array of files chosen and its directory
+				var cart = [];
+				for (var i = 0; i < homebrew.length ; i++) {
+					for (var e = 0; e < chosenapps.length ; e++) {
+						if (homebrew[i].directory == chosenapps[e]) {
+							var appinfo = {};
+							appinfo.dir = homebrew[i].directory;
+							appinfo.binary = homebrew[i].binary;
+							cart.push(appinfo);
+						}  
+					} 
+				}
+				//pass array to server
+				$.ajax({ 
+					type: "POST", 
+					url: "packager.php", 
+					data: {data: cart},
+					cache: false,
+					beforeSend: function() {
+						document.getElementById("processing").style.display = "block";
+					},
+					complete: function() {
+						document.getElementById("processing").style.display = "none";
+					},
+					success: function(response) { 
+       						document.location.href = (response);//returned zip file
+       					} 
+       				});			
+			})
+		});
+	</script>
+	</html>
